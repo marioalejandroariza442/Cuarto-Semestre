@@ -1,0 +1,69 @@
+import random
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+
+    def append(self, data):
+        new_node = Node(data)
+        if not self.head:
+            self.head = new_node
+            return
+        curr = self.head
+        while curr.next:
+            curr = curr.next
+        curr.next = new_node
+
+    def display(self):
+        curr = self.head
+        nodes = []
+        while curr:
+            nodes.append(str(curr.data))
+            curr = curr.next
+        print(" -> ".join(nodes))
+
+    def mayor_menor(self):
+        if not self.head:
+            return None, None
+        curr = self.head
+        mayor = menor = curr.data
+        while curr:
+            if curr.data > mayor:
+                mayor = curr.data
+            if curr.data < menor:
+                menor = curr.data
+            curr = curr.next
+        return mayor, menor
+    
+    def suma_promedio(self):
+        if not self.head:
+            return 0, 0
+        curr = self.head
+        total = count = 0
+        while curr:
+            total += curr.data
+            count += 1
+            curr = curr.next
+        promedio = total / count if count else 0
+        return total, promedio
+    
+# Generar tamaño aleatorio entre 5 y 10
+size = random.randint(5, 10)
+ll = LinkedList()
+
+# Crear lista enlazada con datos aleatorios entre 0 y 100
+for _ in range(size):
+    ll.append(random.randint(0, 100))
+
+ll.display()
+
+display_mayor, display_menor = ll.mayor_menor()
+print(f"Mayor: {display_mayor}, Menor: {display_menor}")
+
+display_suma, display_promedio = ll.suma_promedio()
+print(f"Suma: {display_suma}, Promedio: {display_promedio}")

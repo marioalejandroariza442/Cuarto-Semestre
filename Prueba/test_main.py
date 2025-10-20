@@ -1,6 +1,6 @@
 # archivo: test_main.py
 import unittest
-import main
+import Prueba.main as main
 
 class TestMain(unittest.TestCase):
     def test_suma(self):
